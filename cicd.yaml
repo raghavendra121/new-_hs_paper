@@ -1,0 +1,17 @@
+name: terraform
+on:
+  push:
+   branchs: [main]
+  pull request:
+     types: [opend, Reopened]
+     branches: [main]
+
+steps:
+  - name: checkout reposistry
+    uses: action/dev2
+  - name: terraform init
+    uses: terraform init
+  - name: terraform plan
+    uses: terraform plan -lock=false
+  - name: terraform apply
+    uses: terrdorm apply -lock=false -auto-approve
